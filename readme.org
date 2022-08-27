@@ -1,0 +1,162 @@
+#+TITLE:Write a app in echo4 for upload image
+
+* WorkLog
+** StarProject on git hub
+<2022-08-20 Sat 13:24>--<2022-08-20 Sat 13:28> 4 Minutes
+https://github.com/zxhoper/echo4imgupload
+$ git log
+commit 7068d0419c11af9bf425d3d48af93a8fe68456d2 (HEAD -> master, origin/master)
+Author: 
+Date:   Sat Aug 20 13:26:51 2022 +0800
+
+    first commit
+github.com/zxhoper/echo4imgupload/   <-    [20220820T132920]
+$ 
+
+** Single file upload ok
+<2022-08-20 Sat 13:28>--<2022-08-20 Sat 14:37> 1 Hour,9 Minutes
+$ git log
+commit af124594905a5967aed2958e4aaf824ca0169406 (HEAD -> master, origin/master)
+Author: Zxander Hoper <zxhoper@proton.me>
+Date:   Sat Aug 20 14:35:10 2022 +0800
+
+    Single file uplaod ok
+
+    first commit
+github.com/zxhoper/echo4imgupload/   <-    [20220820T143755]
+
+** Get day of week
+<2022-08-20 Sat 17:44>--
+
+Output date time
+#+BEGIN_SRC 
+Upload report:
+File 0: up/7980282D-BDA1-453B-9DA8-25F0489D2C76.jpeg OK!
+       => time: 2022:08:20 15:34:37 
+File 1: up/C92E49BC-A90D-4A68-89A8-BD944B44E3B5.jpeg OK!
+       => time: 2022:08:20 15:25:55 
+File 2: up/BABDDB14-5B2C-4613-95C8-6CFD8A4451A1.jpeg OK!
+       => time: 2022:08:20 15:26:11 
+#+END_SRC
+
+1) regular expression => get YYYY MM DD  hh mm
+
+2) use time package => get day of week
+
+2 or )
+
+#+BEGIN_SRC c
+/*The following is a sample C subroutine loosely based on Zeller's
+   Congruence [Zeller] which may be used to obtain the day of the week
+   for dates on or after 0000-03-01: */
+
+   char *day_of_week(int day, int month, int year)
+   {
+      int cent;
+      char *dayofweek[] = {
+         "Sunday", "Monday", "Tuesday", "Wednesday",
+         "Thursday", "Friday", "Saturday"
+      };
+
+      /* adjust months so February is the last one */
+      month -= 2;
+      if (month < 1) {
+         month += 12;
+         --year;
+      }
+      /* split by century */
+      cent = year / 100;
+      year %= 100;
+      return (dayofweek[((26 * month - 2) / 10 + day + year
+                        + year / 4 + cent / 4 + 5 * cent) % 7]);
+   }
+#+END_SRC 
+
+
+3) Out put date-time format string in org style => <2022-08-20 Sat 17:46>
+
+4) Calcule time duration 
+Done
+
+- Client output:
+#+BEGIN_SRC 
+
+* Fa Study record
+
+** 2022-08-20 Sat: Fa-Study
+<2022-08-21 Sun 05:52>--<2022-08-20 Sat 15:25> 14 Hours, 27 Minutes
+台中3家戲院
+up/2913557B-ABE6-4207-A378-0455C6E5AD9F.jpeg
+up/C92E49BC-A90D-4A68-89A8-BD944B44E3B5.jpeg
+me@pg.site
+
+...
+#+END_SRC
+
+- Server log:
+#+BEGIN_SRC 
+$ go run . 
+
+   ____    __
+  / __/___/ /  ___
+ / _// __/ _ \/ _ \
+/___/\__/_//_/\___/ v4.8.0
+High performance, minimalist Go web framework
+https://echo.labstack.com
+____________________________________O/_______
+                                    O\
+⇨ http server started on [::]:2424
+2022/08/21 09:43:01 
+
+Picture index: 0
+{"ApertureValue":["54823/32325"],"BrightnessValue":["122999/25408"],"ColorSpace":[1],"ComponentsConfiguration":"","DateTime":"2022:08:21 05:52:29","DateTimeDigitized":"2022:08:21 05:52:29","DateTimeOriginal":"2022:08:21 05:52:29", ... }
+DateTimeOriginal: 2022:08:21 05:52:29
+in parseDTString dt: 2022:08:21 05:52:29
+0 --
+ YYYY: 2022
+   MM: 08
+   DD: 21
+   hh: 05
+   mm: 52
+   ss: 29
+<--MAP-->
+==> YYYY 2022
+==> MM 08
+==> DD 21
+==> hh 05
+==> mm 52
+==> ss 29
+2022/08/21 09:43:01 
+
+Picture index: 1
+{"ApertureValue":["54823/32325"],"BrightnessValue":["48993/13970"],"ColorSpace":[65535],"ComponentsConfiguration":"","DateTime":"2022:08:20 15:25:55","DateTimeDigitized":"2022:08:20 15:25:55","DateTimeOriginal":"2022:08:20 15:25:55", ... }
+DateTimeOriginal: 2022:08:20 15:25:55
+in parseDTString dt: 2022:08:20 15:25:55
+0 --
+ YYYY: 2022
+   MM: 08
+   DD: 20
+   hh: 15
+   mm: 25
+   ss: 55
+<--MAP-->
+==> hh 15
+==> mm 25
+==> ss 55
+==> YYYY 2022
+==> MM 08
+==> DD 20
+input string <2022-08-21 Sun 05:52>--<2022-08-20 Sat 15:25>
+==============================================================================================
+==============================================================================================
+#+END_SRC
+
+
+* Basic function ready
+<2022-08-21 Sun 09:50>
+
+
+* TODO Refactor
+
+
+* Next step: Get location information  

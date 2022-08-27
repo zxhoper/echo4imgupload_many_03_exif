@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Images Upload</title>
+
+    <style>
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+body{
+	background-color: #AEAEAE;
+}
+.wrap{
+	width:100%;
+  min-width:20em;
+}
+.background{
+	background-color:#111;
+	margin: 0 auto;
+	padding: 1.5em;
+	width:60%;
+	height: auto;
+	border: .2em solid #0198E1;
+	border-radius: .8em;
+	-webkit-box-shadow: 0 1em .5em #555;
+	-moz-box-shadow: 0 1em .5em #555;
+	box-shadow: 0 1em .5em #555;
+}
+#title{
+	width:100%;
+	margin:0;
+	padding: .5em 0;
+	background-color: #0198E1;
+}
+#title h1{
+	text-align: center;
+	color:#000;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 4em;
+  font-weight:400;
+  line-height: 1em;
+  margin-top: .3em;
+}
+
+.section {
+	color:#0198E1;
+	font-family: Helvetica, sans-serif;
+  font-weight:300;
+	font-size: 2em;
+	line-height: 2em;
+	background-color: rgba(175,175,175,.3);
+	width: 100%;
+	padding: .8em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	border: .1em solid rgb(0,0,0);
+  text-indent: 1.5em;
+}
+.section:focus{
+	border: .1em solid #0198E1;
+}
+#comment{
+	height: 5em;
+	max-width: 100%;
+}
+#agree{
+	font-family: 'Open Sans', sans-serif;
+	color: #0198E1;
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.submit{
+ width: 100%;
+}
+button{
+	width:50%;
+	margin-left: 25%;
+	padding:1em;
+	font-family: 'Open Sans', sans-serif;
+	cursor:pointer;
+	background-color: #0198E1;
+	color: #000;
+	font-size: 1em;
+	font-weight: 400;
+	border: none;
+	min-width: 10em;
+}
+button:focus , button:hover {
+	background-color: #fff;
+	color: #0198E1;
+	font-weight: 600; 
+}
+    </style>
+
+
+</head>
+<body>
+
+
+<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+<div class="wrap">
+  <div class="background">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <div id="title">
+	<h1>Images Upload-008</h1>
+      </div>
+      <p>
+	<select name="category" class="section" id="category">
+	  <option class="section" value="Family">1. Fmily</option>
+	  <option class="section" value="Work">2. Work</option>
+	  <option class="section" value="Travel">3. Travel</option>
+	  <option class="section" value="Life">4. Life</option>
+	  <option class="section" value="Others">5. Others</option>
+	</select>
+      </p>
+      
+      
+      <p>
+	<input name="title" type="text" class="section" placeholder="An Title">
+      </p>
+
+      <p>
+	<input name="tags" type="text" class="section" placeholder="#put #some #tags #in #here">
+      </p>
+
+	    
+      <p>
+	<input name="files" type="file" class="section files" multiple>
+      </p>
+      <!-- p>
+	   <input name="email" type= "text" class="section" placeholder="Email">
+</p -->
+    <p>
+      <textarea name="note" class="section text" id="comment" placeholder= "Some extra info..."></textarea>
+    </p>
+    <!--p id="agree">
+	<input name="check" type="checkbox" value ="cake"> I agree with the statement that cake is awesome!<br></br>
+	<input name="check" type="radio" value="yes"> Yes! <br></br>
+			</p -->
+  <div class="submit">
+    <button type="submit" value="Submit">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+
+</body>
+</html>
+
+
+</body>
+</html>
+
+
+
+
