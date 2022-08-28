@@ -182,9 +182,9 @@ func upload(c echo.Context) error {
 
 			resStr += fmt.Sprintf("imgExt:=========>%s", imgExt)
 
-			newFileName = fmt.Sprintf("%s-%s-%sa%s%s-%s__%s_%s_%s%s",
-				dtm["YYYY"], dtm["MM"], dtm["DD"], dtm["hh"], dtm["mm"],
-				dow, title, cats, tagStringHyphen, imgExt)
+			newFileName = fmt.Sprintf("%s-%s-%sa%s%s-%s__%s-%03d_%s_%s%s",
+				dtm["YYYY"], dtm["MM"], dtm["DD"], dtm["hh"], dtm["mm"], dow,
+				title, i+1, cats, tagStringHyphen, imgExt)
 
 			resStr += fmt.Sprintf("newFileName:====>%s", newFileName)
 		}
@@ -193,9 +193,9 @@ func upload(c echo.Context) error {
 		//time.Sleep(1 * time.Second)
 
 		if newFileName == "" {
-			newFileName = fmt.Sprintf("%s__%03d_%s_%s_%s%s",
-				nowTimeStamp, i+1,
-				title, cats, tagStringHyphen, imgExt)
+			newFileName = fmt.Sprintf("%s__%s-%03d_%s_%s%s",
+				nowTimeStamp, title, i+1,
+				cats, tagStringHyphen, imgExt)
 		}
 
 		// move to new file
@@ -341,5 +341,5 @@ func main() {
 	e.Static("/", "public")
 	e.POST("/upload", upload)
 
-	e.Logger.Fatal(e.Start(":2424"))
+	e.Logger.Fatal(e.Start(":8715"))
 }
